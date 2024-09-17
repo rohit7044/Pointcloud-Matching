@@ -11,7 +11,7 @@ The approach:
 1. Preprocessed and downsampled the pointclouds
 2. Initiate Global Registration to get an initial transformation matrix
 3. Pass the global transformation matrix to ICP Registration for next step
-4. Retrieve the transformation matrix and apply computation to retrieve the Translation Matrix, Rotation Matrix, Scaling Matrix
+4. Retrieve the transformation matrix and decompose to retrieve the Translation Matrix, Rotation Matrix, Scaling Matrix
 
 The Drawback:
 
