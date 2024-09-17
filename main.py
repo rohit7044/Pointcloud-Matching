@@ -1,5 +1,4 @@
 import argparse as args
-import numpy as np
 from local_pointcloud_registration import compute_local_transformation
 from global_pointcloud_registration import compute_global_transformation
 from utils import read_pointcloud, visualize_pointcloud, draw_registration_result, decompose_transformation_matrix, preprocess_point_cloud
@@ -11,17 +10,20 @@ from overlapping_lookup import non_overlapping_lookup
 
 if __name__ == "__main__":
     parser = args.ArgumentParser()
-    parser.add_argument("point_cloud_path1", type=str, help="Path to the first point cloud file")
-    parser.add_argument("point_cloud_path2", type=str, help="Path to the second point cloud file")
+    parser.add_argument("--pc1", dest="point_cloud_path1", type=str, help="Path to the first point cloud file")
+    parser.add_argument("--pc2", dest="point_cloud_path2", type=str, help="Path to the second point cloud file")
+    parser.add_argument("--voxel_size", dest = "voxel_size", type=float, help="Voxel size for downsampling")
+    parser.add_argument("--threshold", dest = "threshold", type=float, help="Threshold value for ICP registration")
     args = parser.parse_args()
 
+    # Now you can access the parsed values as follows:
     point_cloud1_path = args.point_cloud_path1
     point_cloud2_path = args.point_cloud_path2
+    voxel_size = args.voxel_size
+    threshold = args.threshold
 
     point_cloud1 = read_pointcloud(point_cloud1_path)
     point_cloud2 = read_pointcloud(point_cloud2_path)
-
-    voxel_size = 0.5
 
     point_cloud1_down, source_fpfh = preprocess_point_cloud(point_cloud1, voxel_size)
     point_cloud2_down, target_fpfh = preprocess_point_cloud(point_cloud2, voxel_size)

@@ -7,6 +7,10 @@ Align the point clouds and retrieve the Translation Matrix, Rotation Matrix, Sca
 Optional goal:
 Extract the non-overlapping data
 
+To run the code:
+```commandline
+python main.py --pc1 "point_cloud_1.ply" --pc2 "point_cloud_2.ply" --voxel_size 0.05 --threshold 0.4
+```
 The approach:
 1. Preprocessed and downsampled the pointclouds
 2. Initiate Global Registration to get an initial transformation matrix
