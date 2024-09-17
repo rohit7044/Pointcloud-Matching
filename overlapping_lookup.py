@@ -11,8 +11,8 @@ def non_overlapping_lookup(source, target, trans_init):
     # Build a KD-Tree for the target point cloud to find nearest neighbors
     target_kdtree = o3d.geometry.KDTreeFlann(target)
 
-    # Calculate the adaptive threshold
-    threshold = 0.002
+    # Calculate the threshold
+    threshold = 0.01
 
     # Initialize lists to store overlapping and non-overlapping points
     overlap_points = []

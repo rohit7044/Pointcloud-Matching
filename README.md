@@ -1,31 +1,33 @@
 # Pointcloud Matching using Open3D
 
-Explanation:
+## Explanation:
 The main goal:
 Align the point clouds and retrieve the Translation Matrix, Rotation Matrix, Scaling Matrix
 
-Optional goal:
+## Optional goal:
 Extract the non-overlapping data
 
+## Requirements
+Make sure you have Python, Numpy and Open3D installed. That's all
 To run the code:
 ```commandline
-python main.py --pc1 "point_cloud_1.ply" --pc2 "point_cloud_2.ply" --voxel_size 0.05 --threshold 0.4
+python main.py --pc1 "point_cloud_1.ply" --pc2 "point_cloud_2.ply" --voxel_size 0.4 --threshold 0.8
 ```
-The approach:
+## The approach:
 1. Preprocessed and downsampled the pointclouds
 2. Initiate Global Registration to get an initial transformation matrix
 3. Pass the global transformation matrix to ICP Registration for next step
 4. Retrieve the transformation matrix and decompose to retrieve the Translation Matrix, Rotation Matrix, Scaling Matrix
 
-The Drawback:
+## The Drawback:
 
 I feel the alignment is not always accurate. When I see the aligned pointcloud, it looks like it needs to be rotated another 90º. And since Global transformation matrix is not aligning it right, the ICP though gets the initial matrix is also struggling with it. The RMSE though comes <3, it struggles with fitting <5.
+
 Another drawback is lack of difference of points in both the pointclouds. One pointcloud has more points thatn the other so alignment based on points alone is a challenge.
 
+Since the pointcloud is not aligned perfectly, it becomes really difficult to find the non-overlapping points, leading to bad results.
 
-
-
-The viable Solution: 
+## The viable Solution: 
 
 Having reference points: Having reference points before aligning might help us with the rotation as well as excess pointcloud issue. 
 

@@ -1,11 +1,9 @@
 import argparse as args
+import numpy as np
 from local_pointcloud_registration import compute_local_transformation
 from global_pointcloud_registration import compute_global_transformation
 from utils import read_pointcloud, visualize_pointcloud, draw_registration_result, decompose_transformation_matrix, preprocess_point_cloud
 from overlapping_lookup import non_overlapping_lookup
-
-
-
 
 
 if __name__ == "__main__":
@@ -54,15 +52,15 @@ if __name__ == "__main__":
     print("Scale:")
     print(scale)
 
-    # Optional: Find the non-overlapping points
+    # Optional: Find the non-overlapping points Uncomment to make it work
 
     # For using predefined transformation matrix
-    # non_overlapping_lookup(point_cloud1, point_cloud2, reg_local.transformation)
+    # non_overlapping_lookup(point_cloud2_down, point_cloud1_down, reg_local.transformation)
 
-    # reg_local = np.array([[-9.43697404e-01, -1.86913863e-02, -3.30281458e-01, -4.31757612e+00],
-    #                       [-6.56189190e-03,  9.99263717e-01, -3.78016493e-02,  2.35961511e-01],
-    #                       [ 3.30744843e-01, -3.35060471e-02, -9.43125227e-01,  7.70472897e+00],
+    # For using custom transformation matrix. This one works!
+    # reg_local = np.array([[-9.41759366e-01, -1.78947952e-02, -3.35811067e-01, -4.23329280e+00],
+    #                       [-5.58928585e-03,  9.99278177e-01, -3.75750451e-02,  2.22416883e-01],
+    #                       [ 3.36241069e-01, -3.35097066e-02, -9.41179602e-01,  7.80178598e+00],
     #                       [ 0.00000000e+00,  0.00000000e+00,  0.00000000e+00,  1.00000000e+00]])
 
-    # For using custom transformation matrix
-    # non_overlapping_lookup(point_cloud1_down, point_cloud2_down, reg_local)
+    # non_overlapping_lookup(point_cloud2_down, point_cloud1_down, reg_local)
